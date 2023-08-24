@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 1186074765}
   - component: {fileID: 1186074764}
   - component: {fileID: 1186074766}
+  - component: {fileID: 1186074767}
   m_Layer: 0
   m_Name: TopIsleyici
   m_TagString: Untagged
@@ -458,3 +459,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a84ba3037bca242ba338ca4f260259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1186074767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186074763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d82e220a56730f4c885a606aaff930b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renk1:
+  - {r: 0.39515838, g: 0.7304444, b: 0.9433962, a: 1}
+  - {r: 0.8396226, g: 0.1378248, b: 0.1378248, a: 1}
+  - {r: 0.20671056, g: 0.745283, b: 0.25023943, a: 1}
+  - {r: 0.5566038, g: 0.112370946, b: 0.48138878, a: 1}
+  - {r: 0.90419686, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.7268412, a: 1}
+  - {r: 1, g: 0.44850826, b: 0, a: 1}
+  - {r: 0.079955414, g: 0, b: 0.735849, a: 1}
+  renk2:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.23018867, g: 1, b: 0.31769466, a: 1}
+  - {r: 0.06763523, g: 0.0022783459, b: 0.6037736, a: 1}
+  - {r: 1, g: 0, b: 0.3990326, a: 1}
+  - {r: 1, g: 0.91737723, b: 0, a: 1}
+  - {r: 0.7179265, g: 1, b: 0, a: 1}
+  - {r: 0.8811817, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.90418816, b: 1, a: 1}
+  renk3:
+  - {r: 0.86091506, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.39481592, a: 1}
+  - {r: 0.9433962, g: 0, b: 0.8582223, a: 1}
+  - {r: 0, g: 0.77376366, b: 1, a: 1}
+  - {r: 0.10964753, g: 0.5188679, b: 0.5141149, a: 1}
+  - {r: 0, g: 1, b: 0.085513115, a: 1}
+  - {r: 1, g: 0, b: 0.52233887, a: 1}

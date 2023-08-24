@@ -11,7 +11,7 @@ public class TopIsleyici : MonoBehaviour
 {
 
     public static float donusHizi = 130f;
-    public static float donusZamani=3f;
+    public static float donusZamani = 3f;
 
     public static Color renk = Color.blue;
     public GameObject top;
@@ -21,14 +21,11 @@ public class TopIsleyici : MonoBehaviour
     public int topSayisi;
     private int daireNo;
 
+    private Color[] renkDegistir;
     private void Start()
     {
         //Oyun baþýnda ilk dairenin oluþturulamsý lazým onun için bu iþlemi ya
-        GameObject daireler = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
-        daireler.transform.position = new Vector3(0, 20, 23);
-        daireler.name = "Circle" + daireNo;
-
-        topSayisi = LevelIsleyici.topSayisi;
+        ResetGame();
     }
     private void Update()
     {
@@ -37,7 +34,16 @@ public class TopIsleyici : MonoBehaviour
             TopAt();
         }
     }
+    void ResetGame()
+    {
+        renkDegistir = Renk.renkDizisi;
+        renk = renkDegistir[0];
 
+        GameObject daireler = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
+        daireler.transform.position = new Vector3(0, 20, 23);
+        daireler.name = "Circle" + daireNo;
+        topSayisi = LevelIsleyici.topSayisi;
+    }
     private void TopAt()
     {
         if (topSayisi <= 1)
@@ -85,7 +91,7 @@ public class TopIsleyici : MonoBehaviour
         //Random olarak getirecektir. sondaki as gameObject ifadesi de bir çeþit tür dönüþümü.
         daireler.transform.position = new Vector3(0, 20, 23);
         daireler.name = "Circle" + daireNo;
-
+        renk = renkDegistir[daireNo];
         topSayisi = LevelIsleyici.topSayisi;
     }
 }

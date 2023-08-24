@@ -20,10 +20,10 @@ public class RenkDegistirme : MonoBehaviour
             base.gameObject.GetComponent<Collider>().enabled = false;
             collision.gameObject.name = "renk";
             collision.gameObject.tag = "kýrmýzý"; //Tag' ini kýrmýzý yapar.
-            StartCoroutine(RenkDegistir(collision.gameObject));
+            StartCoroutine(RenkDegistirr(collision.gameObject));
         }
     }
-    IEnumerator RenkDegistir(GameObject gameObject)
+    IEnumerator RenkDegistirr(GameObject gameObject)
     {
         yield return new WaitForSeconds(0.01f); //Bekleme süresi
         gameObject.GetComponent<MeshRenderer>().enabled = true;
