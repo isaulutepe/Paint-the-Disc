@@ -25,12 +25,10 @@ public class Daire1 : MonoBehaviour
     }
     private void Update()
     {
-        transform.Rotate(Vector3.up * Time.deltaTime * TopIsleyici.donusHizi);
+        transform.Rotate(Vector3.up * Time.deltaTime * TopIsleyici.rotateSpeed);
     }
     void RotateCircle()
     {
         Debug.Log("iTween anim çalýþtý");
-
-
     }
 }

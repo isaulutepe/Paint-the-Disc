@@ -28,7 +28,7 @@ public class Daire2 : MonoBehaviour
            "y",
            0.8f,
            "time",
-           TopIsleyici.donusZamani,
+           TopIsleyici.rotateTime,
            "easetype",
            iTween.EaseType.easeInOutQuad,
            "looptype",

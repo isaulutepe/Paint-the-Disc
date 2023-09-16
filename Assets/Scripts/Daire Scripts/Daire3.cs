@@ -21,6 +21,6 @@ public class Daire3 : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.down* Time.deltaTime * (TopIsleyici.donusHizi +20));
+        transform.Rotate(Vector3.down* Time.deltaTime * (TopIsleyici.rotateTime +20));
     }
 }

@@ -6,83 +6,88 @@ using UnityEngine;
 
 public class LevelIsleyici : MonoBehaviour
 {
-    public static int aktifSeviye;
-    public static int topSayisi;
-    public static int toplamDaire;
+    public static int currentLevel;
+    public static int ballCount;
+    public static int totalCircle;
 
     private void Awake()
     {
-        if (PlayerPrefs.GetInt("BirinciDeneme", 0) == 0)
+        if (PlayerPrefs.GetInt("firstTime1", 0) == 0)
         {
-            PlayerPrefs.SetInt("BirinciDeneme", 1);
-            PlayerPrefs.SetInt("C_Seviye", 1);
+            PlayerPrefs.SetInt("firstTime1", 1);
+            PlayerPrefs.SetInt("C_Level", 1);
 
         }
-        LevelGuncelle();
+        UpgradeLevel();
     }
 
-    private void LevelGuncelle()
+    private void UpgradeLevel()
     {
-        aktifSeviye = PlayerPrefs.GetInt("C_Seviye", 1);
+        currentLevel = PlayerPrefs.GetInt("C_Level", 1);
 
-        if (aktifSeviye == 1)
+        if (currentLevel == 1)
         {
-            topSayisi = 3;
-            toplamDaire = 2;
+            ballCount = 3;
+            totalCircle = 2;
         }
-        if (aktifSeviye == 2)
+        if (currentLevel == 2)
         {
-            topSayisi = 3;
-            toplamDaire = 3;
+            ballCount = 3;
+            totalCircle = 3;
         }
-        if (aktifSeviye == 3)
+        if (currentLevel == 3)
         {
-            topSayisi = 3;
-            toplamDaire = 4;
+            ballCount = 3;
+            totalCircle = 4;
         }
-        if (aktifSeviye == 4)
+        if (currentLevel == 4)
         {
-            topSayisi = 3;
-            toplamDaire = 5;
+            ballCount = 3;
+            totalCircle = 5;
         }
-        if (aktifSeviye == 5)
+        if (currentLevel == 5)
         {
-            topSayisi = 3;
-            toplamDaire = 5;
+            ballCount = 3;
+            totalCircle = 5;
         }
-        if (aktifSeviye == 6)
+        if (currentLevel == 6)
         {
-            topSayisi = 3;
-            toplamDaire = 5;
+            ballCount = 3;
+            totalCircle = 5;
         }
-        if (aktifSeviye == 7)
+        if (currentLevel == 7)
         {
-            topSayisi = 3;
-            toplamDaire = 5;
+            ballCount = 3;
+            totalCircle = 5;
         }
-        if (aktifSeviye == 1)
+        if (currentLevel == 1)
         {
-            topSayisi = 3;
-            toplamDaire = 2;
+            ballCount = 3;
+            totalCircle = 2;
         }
-        if (aktifSeviye >= 8 && aktifSeviye <= 12)
+        if (currentLevel >= 8 && currentLevel <= 12)
         {
-            topSayisi = 4;
-            toplamDaire = 5;
+            ballCount = 4;
+            totalCircle = 5;
         }
-        if (aktifSeviye > 12 && aktifSeviye <= 20)
+        if (currentLevel > 12 && currentLevel <= 20)
         {
-            topSayisi = 4;
-            toplamDaire = 6;
-            TopIsleyici.donusHizi = 120;
-            TopIsleyici.donusZamani = 2;
+            ballCount = 4;
+            totalCircle = 6;
+            TopIsleyici.rotateSpeed = 120;
+            TopIsleyici.rotateTime = 2;
         }
-        if (aktifSeviye >= 21)
+        if (currentLevel >= 21)
         {
-            topSayisi = 4;
-            toplamDaire = 7;
-            TopIsleyici.donusHizi = 140;
-            TopIsleyici.donusZamani = 2;
+            ballCount = 4;
+            totalCircle = 7;
+            TopIsleyici.rotateSpeed = 140;
+            TopIsleyici.rotateTime = 2;
         }
+    }
+
+    void CreateObstacle()
+    {
+        GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
     }
 }

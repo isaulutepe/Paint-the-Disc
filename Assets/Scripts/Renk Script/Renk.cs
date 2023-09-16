@@ -1,39 +1,39 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Renk : MonoBehaviour
 {
-    public Color[] renk1;
-    public Color[] renk2;
-    public Color[] renk3;
+    public Color[] color1;
+    public Color[] color2;
+    public Color[] color3;
 
-    public static Color[] renkDizisi;
+    public static Color[] colorArray;
 
-    private void Start()
+    private void OnEnable()
     {
-        RenkDegis();
+        ChangeColor();
     }
 
-    private void RenkDegis()
+    private void ChangeColor()
     {
-        int randomRenk = UnityEngine.Random.Range(0, 2);
+        int randomColor = Random.Range(0, 2);
         //0 - 1 - 2 olacak þekilde
-        PlayerPrefs.SetInt("AktifRenk", randomRenk);
-        PlayerPrefs.GetInt("AktifRenk");
+        PlayerPrefs.SetInt("ColorSelect", randomColor);
+        PlayerPrefs.GetInt("ColorSelect");
 
-        if (PlayerPrefs.GetInt("AktifRenk") == 0)
+        if (PlayerPrefs.GetInt("ColorSelect") == 0)
         {
-            renkDizisi = renk1;
+            colorArray = color1;
         }
-        if (PlayerPrefs.GetInt("AktifRenk") == 1)
+        if (PlayerPrefs.GetInt("ColorSelect") == 1)
         {
-            renkDizisi = renk2;
+            colorArray = color2;
         }
-        if (PlayerPrefs.GetInt("AktifRenk") == 2)
+        if (PlayerPrefs.GetInt("ColorSelect") == 2)
         {
-            renkDizisi = renk3;
+            colorArray = color3;
         }
     }
 }

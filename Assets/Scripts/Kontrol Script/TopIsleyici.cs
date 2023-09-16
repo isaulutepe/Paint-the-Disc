@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -10,18 +10,20 @@ using DG.Tweening;
 public class TopIsleyici : MonoBehaviour
 {
 
-    public static float donusHizi = 130f;
-    public static float donusZamani = 3f;
+    public static float rotateSpeed = 100f;
+    public static float rotateTime = 3f;
+    public static float currentCircleNo;
 
-    public static Color renk = Color.blue;
-    public GameObject top;
+    public static Color color;
+    public GameObject ball;
 
-    public float hiz = 100f;
+    public float speed = 100f;
 
-    public int topSayisi;
-    private int daireNo;
+    public int ballCount;
+    private int circleNo;
 
-    private Color[] renkDegistir;
+    private Color[] ChangingColor;
+
     private void Start()
     {
         //Oyun baþýnda ilk dairenin oluþturulamsý lazým onun için bu iþlemi ya
@@ -31,67 +33,67 @@ public class TopIsleyici : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TopAt();
+            HitBall();
         }
     }
     void ResetGame()
     {
-        renkDegistir = Renk.renkDizisi;
-        renk = renkDegistir[0];
+        ChangingColor = Renk.colorArray;
+        color = ChangingColor[0]; //Baþlangýç rengi
 
-        GameObject daireler = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
-        daireler.transform.position = new Vector3(0, 20, 23);
-        daireler.name = "Circle" + daireNo;
-        topSayisi = LevelIsleyici.topSayisi;
+        GameObject gameObject2 = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
+        gameObject2.transform.position = new Vector3(0, 20, 23);
+        gameObject2.name = "Circle" + circleNo;
+
+        ballCount = LevelIsleyici.ballCount;
     }
-    private void TopAt()
+    private void HitBall()
     {
-        if (topSayisi <= 1)
+        if (ballCount <= 1)
         {
-            this.Invoke("DaireYarat", 0.4f); //0,4 saniye içinde daire yarat fonksiyonunu çaðýrýr.
+            this.Invoke("MakeNewCircle", 0.4f); //0,4 saniye içinde daire yarat fonksiyonunu çaðýrýr.
         }
-        topSayisi--;
-        GameObject toplar = Instantiate<GameObject>(top, new Vector3(0, 0, -8), Quaternion.identity); //Týklandýkça top üretilecek.
-        toplar.GetComponent<MeshRenderer>().material.color = renk; //Top rengi deðiþtirdik.
-        toplar.GetComponent<Rigidbody>().AddForce(Vector3.forward * hiz, ForceMode.Impulse); //Topa yukarý yönlü kuvvet uyguladýk.
+        ballCount--;
+        GameObject gameObject = Instantiate<GameObject>(ball, new Vector3(0, 0, -8), Quaternion.identity); //Týklandýkça top üretilecek.
+        gameObject.GetComponent<MeshRenderer>().material.color = color; //Top rengi deðiþtirdik.
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * speed, ForceMode.Impulse); //Topa yukarý yönlü kuvvet uyguladýk.
 
     }
-    private void DaireYarat()
+    void MakeNewCircle()
     {
-        GameObject[] dizi = GameObject.FindGameObjectsWithTag("circle");
-        GameObject gameObject = GameObject.Find("Circle" + daireNo); //BU adlý game objeyi bul.
-        for (int i = 0; i < 24; i++) //Kendi içinde 24 parça olugundan döngü 24 defa çalýþmalý.
+        GameObject[] array = GameObject.FindGameObjectsWithTag("circle");
+        GameObject gameObject = GameObject.Find("Circle" + circleNo);
+        for (int i = 0; i < 24; i++)
         {
-            gameObject.transform.GetChild(i).gameObject.SetActive(false); //Hepsini kapattýk.
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+            //Bütün parçalarýn aktifliðini kapatýyoruz.
         }
-        gameObject.transform.GetChild(24).GetComponent<MeshRenderer>().material.color = renk; //Altta kalan dairenin renginin tamamýný deðiþtirdik.
+        gameObject.transform.GetChild(24).gameObject.GetComponent<MeshRenderer>().material.color = color; //En son da bulunan bütün halinin rengini deðiþtirdik.
+
         if (gameObject.GetComponent<iTween>())
         {
             gameObject.GetComponent<iTween>().enabled = false;
         }
-        foreach (GameObject d in dizi)
+        foreach (GameObject target in array)
         {
-            iTween.MoveBy(d, iTween.Hash(new object[]
+            iTween.MoveBy(target, iTween.Hash(new object[]
             {
                 "y",
-                -2.98,
+                -2.98f,
                 "easetype",
                 iTween.EaseType.spring,
                 "time",
                 0.5
             }));
-
-
         }
-        daireNo++;
+        circleNo++;
 
+        GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1, 4))) as GameObject;
+        gameObject2.transform.position = new Vector3(0, 20, 23);
+        gameObject2.name = "Circle" + circleNo;
+        ballCount = LevelIsleyici.ballCount;
 
-        GameObject daireler = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
-        //Yeni daire yarattik anacak yaratýlacak nesneyi metot çaðýrýlýnca kaynaklardan kendisi bulucak ve
-        //Random olarak getirecektir. sondaki as gameObject ifadesi de bir çeþit tür dönüþümü.
-        daireler.transform.position = new Vector3(0, 20, 23);
-        daireler.name = "Circle" + daireNo;
-        renk = renkDegistir[daireNo];
-        topSayisi = LevelIsleyici.topSayisi;
+        color = ChangingColor[circleNo];
+
     }
 }
