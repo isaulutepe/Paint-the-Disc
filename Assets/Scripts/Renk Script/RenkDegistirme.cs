@@ -7,7 +7,7 @@ public class RenkDegistirme : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("kýrmýzý")) //Dokunduðu tag kýrmýzý ise
+        if (collision.gameObject.CompareTag("kýrmýzý")) //Dokunduðu tag kýrmýzý ise.Bunu bütün renk deðiþtiren child objeleri için kullaným herhangi bir þey de olabilir.
         {
             base.gameObject.GetComponent<Collider>().enabled = false;
             collision.gameObject.GetComponent<MeshRenderer>().enabled = true;

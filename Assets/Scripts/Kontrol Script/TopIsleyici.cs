@@ -29,25 +29,24 @@ public class TopIsleyici : MonoBehaviour
         //Oyun baþýnda ilk dairenin oluþturulamsý lazým onun için bu iþlemi ya
         ResetGame();
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            HitBall();
-        }
-    }
+  
     void ResetGame()
     {
         ChangingColor = Renk.colorArray;
         color = ChangingColor[0]; //Baþlangýç rengi
 
-        GameObject gameObject2 = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 4))) as GameObject;
+        GameObject gameObject2 = Instantiate(Resources.Load("round" + UnityEngine.Random.Range(1, 12))) as GameObject;
         gameObject2.transform.position = new Vector3(0, 20, 23);
         gameObject2.name = "Circle" + circleNo;
 
         ballCount = LevelIsleyici.ballCount;
+
+        currentCircleNo = circleNo;
+        LevelIsleyici.currentColor = color;
+
+        MakeObstacle();
     }
-    private void HitBall()
+    public void HitBall()
     {
         if (ballCount <= 1)
         {
@@ -87,13 +86,75 @@ public class TopIsleyici : MonoBehaviour
             }));
         }
         circleNo++;
+        currentCircleNo = circleNo;
+
 
         GameObject gameObject2 = Instantiate(Resources.Load("round" + Random.Range(1, 4))) as GameObject;
         gameObject2.transform.position = new Vector3(0, 20, 23);
         gameObject2.name = "Circle" + circleNo;
+
         ballCount = LevelIsleyici.ballCount;
 
-        color = ChangingColor[circleNo];
+        //Renk dizilerinde 8 eleman oldugundan dizi dýþýna çýkmasýný engellemk için bu iþlemi yaptým.
+        int maxIndex = 7;
+        if (circleNo > maxIndex)
+        {
+            //Var olan renklerden random çaðýrmaya devam edecek.
+            int rnd = Random.Range(0, maxIndex + 1);
+            color = ChangingColor[rnd];
+        }
+        else
+            color = ChangingColor[circleNo];
 
+        LevelIsleyici.currentColor = color;
+
+        MakeObstacle();
+    }
+    //Boyalý alanlar yaratmak için.
+    void MakeObstacle()
+    {
+        if (circleNo == 1)
+        {
+            FindObjectOfType<LevelIsleyici>().CreateObstacle1();
+        }
+        if (circleNo == 2)
+        {
+            FindObjectOfType<LevelIsleyici>().CreateObstacle2();
+        }
+        if (circleNo == 3)
+        {
+            FindObjectOfType<LevelIsleyici>().CreateObstacle3();
+        }
+        if (circleNo == 4)
+        {
+            FindObjectOfType<LevelIsleyici>().CreateObstacle4();
+        }
+        if (circleNo == 5)
+        {
+            FindObjectOfType<LevelIsleyici>().CreateObstacle5();
+        }
+        if (circleNo > 5) //Circle no 5 den büyükse iþlem sonlanmamasý için artýk random engeller oluþturacak.
+        {
+            int rnd = Random.Range(1, 6); // 1 ile 5 arasýnda rastgele bir sayý üretir
+            switch (rnd)
+            {
+                case 1:
+                    FindObjectOfType<LevelIsleyici>().CreateObstacle1();
+                    break;
+                case 2:
+                    FindObjectOfType<LevelIsleyici>().CreateObstacle2();
+                    break;
+                case 3:
+                    FindObjectOfType<LevelIsleyici>().CreateObstacle3();
+                    break;
+                case 4:
+                    FindObjectOfType<LevelIsleyici>().CreateObstacle4();
+                    break;
+                case 5:
+                    FindObjectOfType<LevelIsleyici>().CreateObstacle5();
+                    break;
+            }
+
+        }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,9 +8,11 @@ public class LevelIsleyici : MonoBehaviour
     public static int currentLevel;
     public static int ballCount;
     public static int totalCircle;
+    public static Color currentColor;
 
     private void Awake()
     {
+
         if (PlayerPrefs.GetInt("firstTime1", 0) == 0)
         {
             PlayerPrefs.SetInt("firstTime1", 1);
@@ -86,8 +87,85 @@ public class LevelIsleyici : MonoBehaviour
         }
     }
 
-    void CreateObstacle()
+    public void CreateObstacle1()
     {
         GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
+        //Oluþturulan engelin boyalý olarak gelecek Child objelerini random olarak verdik.
+        //Bu alanlara top atarsak zaten boyalý oldugu için gaöeOver olacak.
+        int index = Random.Range(1, 3);
+        gameObject.transform.GetChild(index).gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.transform.GetChild(index).gameObject.GetComponent<MeshRenderer>().material.color = currentColor;
+        gameObject.transform.GetChild(index).gameObject.tag = "kýrmýzý";
     }
+    public void CreateObstacle2()
+    {
+        GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
+
+        int[] array = new int[]
+        {
+            Random.Range(1, 3),
+            Random.Range(15, 17)
+        };
+        for (int i = 0; i < array.Length; i++)
+        {
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().material.color = currentColor;
+            gameObject.transform.GetChild(array[i]).gameObject.tag = "kýrmýzý";
+        }
+    }
+    public void CreateObstacle3()
+    {
+        GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
+
+        int[] array = new int[]
+        {
+            Random.Range(1, 3),
+            Random.Range(4, 6),
+            Random.Range(18, 20)
+        };
+        for (int i = 0; i < array.Length; i++)
+        {
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().material.color = currentColor;
+            gameObject.transform.GetChild(array[i]).gameObject.tag = "kýrmýzý";
+        }
+    }
+    public void CreateObstacle4()
+    {
+        GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
+
+        int[] array = new int[]
+        {
+            Random.Range(1, 3),
+            Random.Range(4, 6),
+            Random.Range(15, 17),
+            Random.Range(22,24)
+        };
+        for (int i = 0; i < array.Length; i++)
+        {
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().material.color = currentColor;
+            gameObject.transform.GetChild(array[i]).gameObject.tag = "kýrmýzý";
+        }
+    }
+    public void CreateObstacle5()
+    {
+        GameObject gameObject = GameObject.Find("Circle" + TopIsleyici.currentCircleNo);
+
+        int[] array = new int[]
+        {
+            Random.Range(1, 3),
+            Random.Range(4, 6),
+            Random.Range(11, 13),
+            Random.Range(8, 10),
+            Random.Range(15, 17)
+        };
+        for (int i = 0; i < array.Length; i++)
+        {
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.transform.GetChild(array[i]).gameObject.GetComponent<MeshRenderer>().material.color = currentColor;
+            gameObject.transform.GetChild(array[i]).gameObject.tag = "kýrmýzý";
+        }
+    }
+ 
 }
