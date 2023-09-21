@@ -22,7 +22,7 @@ public class LevelIsleyici : MonoBehaviour
         UpgradeLevel();
     }
 
-    private void UpgradeLevel()
+    public void UpgradeLevel()
     {
         currentLevel = PlayerPrefs.GetInt("C_Level", 1);
 
