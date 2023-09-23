@@ -19,6 +19,7 @@ public class RenkDegistirme : MonoBehaviour
         }
         else
         {
+            GameObject.Find("hitSound").GetComponent<AudioSource>().Play();
             base.gameObject.GetComponent<Collider>().enabled = false;
             collision.gameObject.name = "color";
             collision.gameObject.tag = "kýrmýzý"; //Tag' ini kýrmýzý yapar.

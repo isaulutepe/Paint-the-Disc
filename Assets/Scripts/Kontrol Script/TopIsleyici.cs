@@ -24,8 +24,7 @@ public class TopIsleyici : MonoBehaviour
     public GameObject levelComplate;
     public GameObject failScreen;
     public GameObject startGameScreen;
-    //public GameObject circleEffect;
-    //public GameObject complateEffect;
+
 
     public float speed = 100f;
 
@@ -131,6 +130,7 @@ public class TopIsleyici : MonoBehaviour
 
         if (CircleCount >= LevelIsleyici.totalCircle && !gameFail)
         {
+            complateSound.Play();
             StartCoroutine(LevelCompleteScreen());
         }
         else
@@ -192,6 +192,7 @@ public class TopIsleyici : MonoBehaviour
 
     public void FailGame()
     {
+        gameFailSound.Play();
         gameFail = true;
         Invoke("FailScreen", 1);
         btn.SetActive(false);

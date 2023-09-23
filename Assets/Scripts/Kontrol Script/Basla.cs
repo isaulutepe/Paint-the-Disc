@@ -12,6 +12,7 @@ public class Basla : MonoBehaviour
     {
         levelNo.text = LevelIsleyici.currentLevel + "";
         targetText.text = LevelIsleyici.totalCircle + "";
+        StartCoroutine(DeleyedRemoval());
     }
 
     //Baþlangýç ekranýný yani kendisinin aktifliðini kapatacak.
