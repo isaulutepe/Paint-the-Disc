@@ -13,6 +13,7 @@ public class RenkDegistirme : MonoBehaviour
             collision.gameObject.GetComponent<MeshRenderer>().enabled = true;
             collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.red; //Rengini kýrmýzý yapar.
             base.GetComponent<Rigidbody>().AddForce(Vector3.down * 50, ForceMode.Impulse);//Topa aþaðý dogru kuvvet uygular.
+            HeartsFun(collision.gameObject);
             Destroy(base.gameObject, 0.5f); //Top silinir.
             Debug.Log("GameOver");
         }
@@ -31,5 +32,15 @@ public class RenkDegistirme : MonoBehaviour
         g.GetComponent<MeshRenderer>().enabled = true;
         g.GetComponent<MeshRenderer>().material.color = TopIsleyici.color; //renk deðitirme iþlemi.
         Destroy(base.gameObject); // Üretilen top silinir.
+    }
+
+    void HeartsFun(GameObject g)
+    {
+        int @int = PlayerPrefs.GetInt("hearts");
+        if (@int == 1)
+        {
+            FindObjectOfType<TopIsleyici>().FailGame();
+            FindObjectOfType<TopIsleyici>().HeartsLow();
+        }
     }
 }

@@ -22,8 +22,8 @@ public class TopIsleyici : MonoBehaviour
     public GameObject dummyBall; //Kukla top
     public GameObject btn;
     public GameObject levelComplate;
-    //public GameObject failScreen;
-    //public GameObject startGmeScreen;
+    public GameObject failScreen;
+    public GameObject startGameScreen;
     //public GameObject circleEffect;
     //public GameObject complateEffect;
 
@@ -197,6 +197,22 @@ public class TopIsleyici : MonoBehaviour
         btn.SetActive(false);
         StopCircle();
     }
+    void FailScreen()
+    {
+        failScreen.SetActive(true);
+    }
+    public void DeleteAllCircle()
+    {
+        GameObject[] circles=GameObject.FindGameObjectsWithTag("circle");
+        foreach (GameObject circle in circles)
+        {
+            Destroy(circle); //Oluþturulan bütün daireleri bul ve sil.
+        }
+        gameFail= false;
+        FindObjectOfType<LevelIsleyici>().UpgradeLevel();
+        circleNo= 0;
+        ResetGame();
+    }
 
     private void StopCircle()
     {
@@ -205,10 +221,7 @@ public class TopIsleyici : MonoBehaviour
         if (gameObject.GetComponent<iTween>())
             gameObject.GetComponent<iTween>().enabled = false;
     }
-    //void FailScreen()
-    //{
-    //    failScreen.SetActive(true);
-    //}
+   
 
     //Yeni circle oluþturulurken arka arkaya top atma iþlemi gerçekleþmemesi için yaptýk.
     IEnumerator HideBtn()
@@ -254,6 +267,7 @@ public class TopIsleyici : MonoBehaviour
         GameObject.FindObjectOfType<LevelIsleyici>().UpgradeLevel();
         ResetGame();
         levelComplate.SetActive(false);
+        startGameScreen.SetActive(true);
         gameFail = false;
 
     }
