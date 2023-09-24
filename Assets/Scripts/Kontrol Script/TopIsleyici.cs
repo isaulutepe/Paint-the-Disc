@@ -31,7 +31,6 @@ public class TopIsleyici : MonoBehaviour
     public int ballCount;
     private int circleNo;
     private int heartNo;
-
     private Color[] ChangingColor;
 
     private bool gameFail = false;
@@ -55,7 +54,7 @@ public class TopIsleyici : MonoBehaviour
         ResetGame();
     }
 
-    void ResetGame()
+    public void ResetGame()
     {
         CircleCount = 1;
         ChangingColor = Renk.colorArray;
@@ -204,14 +203,14 @@ public class TopIsleyici : MonoBehaviour
     }
     public void DeleteAllCircle()
     {
-        GameObject[] circles=GameObject.FindGameObjectsWithTag("circle");
+        GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
         foreach (GameObject circle in circles)
         {
             Destroy(circle); //Oluþturulan bütün daireleri bul ve sil.
         }
-        gameFail= false;
+        gameFail = false;
         FindObjectOfType<LevelIsleyici>().UpgradeLevel();
-        circleNo= 0;
+        circleNo = 0;
         ResetGame();
     }
 
@@ -222,7 +221,7 @@ public class TopIsleyici : MonoBehaviour
         if (gameObject.GetComponent<iTween>())
             gameObject.GetComponent<iTween>().enabled = false;
     }
-   
+
 
     //Yeni circle oluþturulurken arka arkaya top atma iþlemi gerçekleþmemesi için yaptýk.
     IEnumerator HideBtn()

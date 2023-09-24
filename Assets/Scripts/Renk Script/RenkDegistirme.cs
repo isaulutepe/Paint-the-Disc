@@ -14,6 +14,7 @@ public class RenkDegistirme : MonoBehaviour
             collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.red; //Rengini kýrmýzý yapar.
             base.GetComponent<Rigidbody>().AddForce(Vector3.down * 50, ForceMode.Impulse);//Topa aþaðý dogru kuvvet uygular.
             HeartsFun(collision.gameObject);
+            
             Destroy(base.gameObject, 0.5f); //Top silinir.
             Debug.Log("GameOver");
         }

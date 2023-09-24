@@ -8,7 +8,9 @@ public class AnaMenu : MonoBehaviour
     public Sprite[] images;
     public Image currentImage;
     public GameObject pauseScreen;
-  
+    public GameObject mainScreen;
+
+
     private void Start()
     {
        currentImage.sprite = images[Random.Range(0,4)];
@@ -23,5 +25,11 @@ public class AnaMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
+    }
+    public void HomeMenu()
+    {
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
+        mainScreen.SetActive(true);
     }
 }
